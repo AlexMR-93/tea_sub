@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Subscriptions", type: :request do
+RSpec.describe "Subscriptions create", type: :request do
   describe "Happy Path" do
       it("When post request is sent to /api/v1/customers/:customer_id/subscriptions") do
         cx = create(:customer).id
@@ -35,5 +35,6 @@ RSpec.describe "Subscriptions", type: :request do
         expect(results[:data][:attributes][:frequency]).to eq(0)
       end
   end
+
 end
 
