@@ -3,8 +3,8 @@ FactoryBot.define do
     customer
     tea
     title { Faker::Subscription.plan }
-    price { Faker::Commerce.price(range: 0..10.0, as_string: true)}
+    price { Faker::Commerce.price(range: 0..10.0)}
     status { Faker::Subscription.status }
-    frequency { 1 }
+    frequency { "Daily" }
   end
 end
