@@ -1,9 +1,17 @@
 class Api::V1::SubscriptionsController <ApplicationController
+  def index
+    customer = Customer.find(params[:customer_id])
+    cx_sub = customer.subscriptions
+    if cx_sub.empty?
+      render json: { errors: 'Customer does not have subscriptions. Please try again.' }, status: 400
+    else
+      render json: CustomerSerializer.new(customer)
+    end
+  end
 
   def create
     new_subscription = Subscription.new(sub_params)
-    if new_subscription.save!
-      # render json: { success: 'You did it' }, status: 400
+    if new_subscription.save
        render json: SubscriptionSerializer.new(new_subscription), status: 201
     else
       render json: { errors: 'Unable to create subscription. Please try again.' }, status: 400
