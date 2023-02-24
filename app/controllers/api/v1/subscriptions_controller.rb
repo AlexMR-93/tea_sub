@@ -19,15 +19,16 @@ class Api::V1::SubscriptionsController <ApplicationController
     end
   end
   def update
-    subscription = Subscription.find(params[:subscription_id])
+
+    subscription = Subscription.find(params[:id])
     if params[:status] == 'cancelled'
-      subscription.update_attribute(:status, 1)
+      subscription.update(sub_params)
       render json: SubscriptionSerializer.new(subscription), status: 200
     elsif params[:status] == 'active'
       subscription.update(sub_params)
       render json: SubscriptionSerializer.new(subscription), status: 200
     else
-      render json: { error: 'Bad request, unable to update' }, status: 400
+      render json: { error: 'Bad request, unable to update status' }, status: 400
     end
     end
 
