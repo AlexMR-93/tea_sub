@@ -16,7 +16,7 @@ RSpec.describe "Subscriptions index", type: :request do
     end
   end
   describe "Sad Path" do
-    it("returns all of a cx subscriptions active and cancelled") do
+    it("returns an error when cx does not have a subscription") do
       cx = create(:customer)
       tea = create(:tea)
       tea2 = create(:tea)

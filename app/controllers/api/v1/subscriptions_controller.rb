@@ -5,7 +5,8 @@ class Api::V1::SubscriptionsController <ApplicationController
     if cx_sub.empty?
       render json: { errors: 'Customer does not have subscriptions. Please try again.' }, status: 400
     else
-      render json: CustomerSerializer.new(customer)
+      #render json: CustomerSerializer.new(customer, include:[:subscriptions])
+      render json: SubscriptionSerializer.new(cx_sub)
     end
   end
 
