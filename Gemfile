@@ -31,16 +31,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group(:development, :test) do
   gem("byebug",   platforms: [:mri, :mingw, :x64_mingw])
-  gem("capybara")
   gem("factory_bot_rails")
   gem("faker")
-  gem("launchy")
-  gem("orderly")
   gem("pry")
   gem("rspec-rails")
   gem("shoulda-matchers")
-  gem("vcr")
-  gem("webmock")
 end
 
 group(:development) do

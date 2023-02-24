@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :customers do
       post "/subscriptions", to: 'subscriptions#create'
-      patch "/subscriptions", to: 'subscriptions#update'
+      patch "/subscriptions/:id", to: 'subscriptions#update'
       get '/subscriptions', to: 'subscriptions#index'
     end
   end

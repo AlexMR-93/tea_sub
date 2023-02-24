@@ -12,7 +12,7 @@ RSpec.describe "Subscriptions update", type: :request do
         status: 'cancelled'
       }
       headers = { 'CONTENT_TYPE' => 'application/json' }
-      patch "/api/v1/customers/#{cx}/subscriptions", headers: headers, params: JSON.generate(cancelled_params)
+      patch "/api/v1/customers/#{cx}/subscriptions/#{sub.id}", headers: headers, params: JSON.generate(cancelled_params)
       expect(response).to be_successful
       expect(response).to have_http_status(200)
 
@@ -29,7 +29,7 @@ RSpec.describe "Subscriptions update", type: :request do
       expect(results[:data][:attributes]).to have_key(:price)
       expect(results[:data][:attributes][:price]).to eq('4.5')
       expect(results[:data][:attributes]).to have_key(:status)
-      expect(results[:data][:attributes][:status]).to eq('1')
+      expect(results[:data][:attributes][:status]).to eq('cancelled')
       expect(results[:data][:attributes]).to have_key(:frequency)
       expect(results[:data][:attributes][:frequency]).to eq(0)
     end
@@ -46,7 +46,7 @@ RSpec.describe "Subscriptions update", type: :request do
         status: ''
       }
       headers = { 'CONTENT_TYPE' => 'application/json' }
-      patch "/api/v1/customers/#{cx}/subscriptions", headers: headers, params: JSON.generate(cancelled_params)
+      patch "/api/v1/customers/#{cx}/subscriptions/#{sub.id}", headers: headers, params: JSON.generate(cancelled_params)
 
       expect(response).to_not be_successful
       expect(response).to have_http_status(400)
